@@ -8,6 +8,7 @@
     <ItemGroup>
         <Compile Include="Graphics.fs" />
         <Compile Include="Screenshot.fs" />
+        <Compile Include="KeyboarManager.fs" />
     </ItemGroup>
 
     <ItemGroup>

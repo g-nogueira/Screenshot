@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screenshot.UI", "Screenshot
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Screenshot.Lib", "Screenshot.Lib\Screenshot.Lib.fsproj", "{D7CAA166-C43B-4930-972E-03AEDE477261}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screenshot.KeyboardManager", "Screenshot.KeyboardManager\Screenshot.KeyboardManager.csproj", "{2305B555-C1A1-42F5-89C0-B542F5A3278A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{D7CAA166-C43B-4930-972E-03AEDE477261}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7CAA166-C43B-4930-972E-03AEDE477261}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7CAA166-C43B-4930-972E-03AEDE477261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2305B555-C1A1-42F5-89C0-B542F5A3278A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2305B555-C1A1-42F5-89C0-B542F5A3278A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2305B555-C1A1-42F5-89C0-B542F5A3278A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2305B555-C1A1-42F5-89C0-B542F5A3278A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -2,7 +2,6 @@
 
 open System.Drawing
 open System.Windows.Forms
-open Screenshot.Lib.Graphics        
 
 module Screenshot =
     open Graphics

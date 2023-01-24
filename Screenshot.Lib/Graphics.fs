@@ -1,8 +1,8 @@
-﻿module Screenshot.Lib.Graphics
+﻿namespace Screenshot.Lib
 
 open System.Drawing
 
-module Graphics =
+module internal Graphics =
     let copyFromScreen (sourceX, sourceY, destX, destY) w h (g: Graphics) =
         g.CopyFromScreen(sourceX, sourceY, destX, destY, Size(w, h))
         ()
