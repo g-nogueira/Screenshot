@@ -1,6 +1,7 @@
 ﻿namespace Screenshot.Lib
 
 open System.Drawing
+open System.Windows.Forms
 open Screenshot.Lib.Graphics        
 
 module Screenshot =
@@ -15,10 +16,12 @@ module Screenshot =
         bitmap
         |> screenshot (sourceX,sourceY)
         
-    let save (path: string) (img: Bitmap) =
-        img.Save path
-        
     let captureScreen (path:string) (w: int) (h:int) =
         bitmap w h
         |> screenshot (0,0)
-        |> save path
+        
+    let save (path: string) (img: Bitmap) =
+        img.Save path
+    
+    let sendToClipboard (img: Bitmap) =
+        Clipboard.SetImage(img);

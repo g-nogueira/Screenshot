@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using SelectArea.Settings;
 using SelectArea.Helpers;
 using SelectArea.Utilities;
-using Screenshot.Lib;
 
 // using Windows.Globalization;
 // using Windows.Media.Ocr;
 
 namespace SelectArea;
 
-public partial class OCROverlay : Window
+public partial class ScreenshotOverlay : Window
 {
     private bool isShiftDown;
     private Point clickedPoint;
     private Point shiftPoint;
-
+    private System.Drawing.Rectangle regionScaled;
     private bool IsSelecting { get; set; }
 
     private Border selectBorder = new Border();
@@ -46,7 +42,7 @@ public partial class OCROverlay : Window
 
     private const double ActiveOpacity = 0.4;
     
-    public OCROverlay()
+    public ScreenshotOverlay()
     {
         InitializeComponent();
     }
@@ -188,6 +184,9 @@ public partial class OCROverlay : Window
             new Size(selectBorder.Width - 2, selectBorder.Height - 2));
         Canvas.SetLeft(selectBorder, left - 1);
         Canvas.SetTop(selectBorder, top - 1);
+
+        ActionsCanvas.SetValue(Canvas.LeftProperty, clippingGeometry.Rect.Right);
+        ActionsCanvas.SetValue(Canvas.TopProperty, clippingGeometry.Rect.Bottom);
     }
 
     private async void RegionClickCanvas_MouseUp(object sender, MouseButtonEventArgs e)
@@ -198,11 +197,13 @@ public partial class OCROverlay : Window
         }
 
         IsSelecting = false;
+        
+
 
         CurrentScreen = null;
         CursorClipper.UnClipCursor();
         RegionClickCanvas.ReleaseMouseCapture();
-        Matrix m = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice;
+        Matrix m = PresentationSource.FromVisual(this)?.CompositionTarget.TransformToDevice ?? throw new Exception("Null PresentationSource");
 
         Point mPt = GetMousePos();
         Point movingPoint = e.GetPosition(this);
@@ -215,7 +216,7 @@ public partial class OCROverlay : Window
         double xDimScaled = Canvas.GetLeft(selectBorder) * m.M11;
         double yDimScaled = Canvas.GetTop(selectBorder) * m.M22;
 
-        System.Drawing.Rectangle regionScaled = new System.Drawing.Rectangle(
+        regionScaled = new System.Drawing.Rectangle(
             (int)xDimScaled,
             (int)yDimScaled,
             (int)(selectBorder.Width * m.M11),
@@ -223,46 +224,51 @@ public partial class OCROverlay : Window
 
         // string grabbedText;
 
-        try
-        {
-            RegionClickCanvas.Children.Remove(selectBorder);
-            clippingGeometry.Rect = new Rect(0, 0, 0, 0);
+        ActionsCanvas.Visibility = Visibility.Visible;
+    }
 
-            Screenshot.Lib.Screenshot.save(
-            "C:\\Users\\gnogueira\\Desktop\\screenshot1.jpeg",
+    private void SaveClipboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        Screenshot.Lib.Screenshot.sendToClipboard(
             Screenshot.Lib.Screenshot.selectArea(
-                    regionScaled.X, regionScaled.Y,
-                    Screenshot.Lib.Screenshot.setSize(regionScaled.Width, regionScaled.Height)
-                )
-            );
-        }
-        catch
-        {
-        }
+                regionScaled.X, regionScaled.Y,
+                Screenshot.Lib.Screenshot.setSize(regionScaled.Width, regionScaled.Height)
+            )
+        );
+        
+        CloseOverlay();
+    }
 
-        // if (regionScaled.Width < 3 || regionScaled.Height < 3)
-        // {
-        //     grabbedText = await ImageMethods.GetClickedWord(this, new Point(xDimScaled, yDimScaled), selectedLanguage);
-        // }
-        // else
-        // {
-        //     grabbedText = await ImageMethods.GetRegionsText(this, regionScaled, selectedLanguage);
-        // }
+    private async void SaveFileButton_Click(object sender, RoutedEventArgs e)
+    {
 
-        // if (string.IsNullOrWhiteSpace(grabbedText) == false)
-        if (true)
-        {
-            // try
-            // {
-            //     Clipboard.SetText(grabbedText);
-            // }
-            // catch (Exception ex)
-            // {
-            //     Logger.LogError($"Clipboard.SetText exception: {ex}");
-            // }
+        CloseOverlay();
 
-            WindowUtilities.CloseAllOCROverlays();
-            // PowerToysTelemetry.Log.WriteEvent(new PowerOCR.Telemetry.PowerOCRCaptureEvent());
-        }
+        var picker = new Windows.Storage.Pickers.FolderPicker();
+        picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+        picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+        picker.FileTypeFilter.Add(".jpg");
+        picker.FileTypeFilter.Add(".jpeg");
+        picker.FileTypeFilter.Add(".png");
+
+        Windows.Storage.StorageFolder folder = await picker.PickSingleFolderAsync();
+        var path = folder.Path + "\\screenshot1.jpeg";
+        
+        Screenshot.Lib.Screenshot.save(
+            path,
+            Screenshot.Lib.Screenshot.selectArea(
+                regionScaled.X, regionScaled.Y,
+                Screenshot.Lib.Screenshot.setSize(regionScaled.Width, regionScaled.Height)
+            )
+        );
+        
+
+    }
+
+    private void CloseOverlay()
+    {
+        RegionClickCanvas.Children.Remove(selectBorder);
+        clippingGeometry.Rect = new Rect(0, 0, 0, 0);
+        WindowUtilities.CloseAllOCROverlays();
     }
 }

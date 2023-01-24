@@ -21,7 +21,7 @@ public static class WindowUtilities
 
         foreach (Screen screen in Screen.AllScreens)
         {
-            OCROverlay overlay = new OCROverlay()
+            ScreenshotOverlay overlay = new ScreenshotOverlay()
             {
                 WindowStartupLocation = WindowStartupLocation.Manual,
                 Width = 200,
@@ -60,7 +60,7 @@ public static class WindowUtilities
 
         foreach (Window window in allWindows)
         {
-            if (window is OCROverlay overlay)
+            if (window is ScreenshotOverlay overlay)
             {
                 return true;
             }
@@ -75,7 +75,7 @@ public static class WindowUtilities
 
         foreach (Window window in allWindows)
         {
-            if (window is OCROverlay overlay)
+            if (window is ScreenshotOverlay overlay)
             {
                 overlay.Close();
             }

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ScreenShot", "ScreenShot\ScreenShot.fsproj", "{D0F74B67-D9EF-4358-9F0C-14899C529574}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectArea", "SelectArea\SelectArea.csproj", "{7F1D9536-EC17-45ED-9FB4-AB0657EA4D19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screenshot.UI", "Screenshot.UI\Screenshot.UI.csproj", "{7F1D9536-EC17-45ED-9FB4-AB0657EA4D19}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Screenshot.Lib", "Screenshot.Lib\Screenshot.Lib.fsproj", "{D7CAA166-C43B-4930-972E-03AEDE477261}"
 EndProject
