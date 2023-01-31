@@ -271,4 +271,6 @@ public partial class ScreenshotOverlay : Window
         clippingGeometry.Rect = new Rect(0, 0, 0, 0);
         WindowUtilities.CloseAllOCROverlays();
     }
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e) => CloseOverlay();
 }

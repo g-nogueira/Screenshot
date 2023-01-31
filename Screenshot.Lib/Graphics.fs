@@ -3,6 +3,7 @@
 open System.Drawing
 
 module internal Graphics =
+    
     let copyFromScreen (sourceX, sourceY, destX, destY) w h (g: Graphics) =
         g.CopyFromScreen(sourceX, sourceY, destX, destY, Size(w, h))
         ()
