@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Screenshot.Lib\Screenshot.Lib.fsproj" />
+      <ProjectReference Include="..\Screenshot.ScreenCapture.API\Screenshot.ScreenCapture.API.fsproj" />
     </ItemGroup>
 
 </Project>

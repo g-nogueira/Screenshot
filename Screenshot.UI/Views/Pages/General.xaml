@@ -24,7 +24,7 @@
                         </Grid.ColumnDefinitions>
                     
                         <TextBlock Grid.Column="0" Text="Capture Region" VerticalAlignment="Center"/>
-                        <ui:TextBox Grid.Column="1" PlaceholderText="Prnt scrn" Width="200"/>
+                        <ui:TextBox Grid.Column="1" Name="TB_RegionHotkey" PlaceholderText="Prnt scrn" Width="200" KeyDown="TB_RegionHotkey_OnKeyDown" GotFocus="TB_RegionHotkey_OnGotFocus" KeyUp="TB_RegionHotkey_OnKeyUp"/>
                     </Grid>
                 <!-- </StackPanel> -->
             </ui:CardExpander>

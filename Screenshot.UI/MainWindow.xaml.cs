@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Forms;
 using SelectArea.Utilities;
 using WK.Libraries.HotkeyListenerNS;
 using Shortcut = Screenshot.KeyboardManager.Shortcut;
@@ -24,16 +10,24 @@ namespace SelectArea
     /// </summary>
     public partial class MainWindow
     {
+        private readonly HotkeyListener _hotkeyListener;
+        public Hotkey HotkeySelectArea = new(Keys.Control, Keys.PrintScreen);
         public MainWindow()
         {
             InitializeComponent();
 
-            Shortcut.Listen(new Hotkey(Keys.Control, Keys.PrintScreen),HotKeyPressed);
+            _hotkeyListener = Shortcut.Listen(HotkeySelectArea,HotKeyPressed);
         }
 
         private void HotKeyPressed(object sender, HotkeyEventArgs e)
         {
             WindowUtilities.LaunchOCROverlayOnEveryScreen();
+        }
+
+        public void SetHotkeySelectArea(Hotkey hotkey)
+        {
+            Shortcut.Replace(_hotkeyListener, HotkeySelectArea, hotkey);
+            HotkeySelectArea = hotkey;
         }
     }
 }

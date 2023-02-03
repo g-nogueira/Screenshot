@@ -3,6 +3,9 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <AssemblyName>Screenshot.ScreenCapture.API</AssemblyName>
+        <RootNamespace>Screenshot.ScreenCapture.API</RootNamespace>
+        <LangVersion>latestmajor</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

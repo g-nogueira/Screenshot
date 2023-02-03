@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="SettingsHelper.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Screenshot.Common.FSharp\Screenshot.Common.FSharp.fsproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="FSharp.Json">
+        <HintPath>..\..\FSharp.Json\FSharp.Json\bin\Debug\netstandard2.0\FSharp.Json.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
