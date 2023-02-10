@@ -15,7 +15,6 @@ namespace SelectArea
         public MainWindow()
         {
             InitializeComponent();
-
             _hotkeyListener = Shortcut.Listen(HotkeySelectArea,HotKeyPressed);
         }
 

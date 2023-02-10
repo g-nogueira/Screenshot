@@ -8,6 +8,8 @@
     <ItemGroup>
         <Compile Include="Boolean.fs" />
         <Compile Include="Path.fs" />
+        <Compile Include="FileStream.fs" />
+        <Compile Include="String.fs" />
     </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ open System.IO
 module Path =
     type Path = string
     
-    let Combine (paths:string[]) : Path =
+    let combine (paths:string[]) : Path =
         Path.Combine paths
 
 

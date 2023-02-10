@@ -3,5 +3,10 @@
 module Boolean =
     let inline onTrue action =
         function
-        | false -> false
-        | true -> action
+        | false -> None
+        | true -> Some (action())
+        
+    let inline onFalse action =
+        function
+        | true -> None
+        | false -> Some (action())

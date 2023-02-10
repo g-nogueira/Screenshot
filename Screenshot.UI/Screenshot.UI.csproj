@@ -12,6 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Autofac" Version="4.9.4" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
         <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.2" />
         <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.0.0" />
@@ -25,6 +26,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Screenshot.KeyboardManager\Screenshot.KeyboardManager.csproj" />
       <ProjectReference Include="..\Screenshot.ScreenCapture.API\Screenshot.ScreenCapture.API.fsproj" />
+      <ProjectReference Include="..\Screenshot.Settings.API\Screenshot.Settings.API.fsproj" />
     </ItemGroup>
 
 </Project>
